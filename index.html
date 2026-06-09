@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Parqueadero</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <img
+            src="logo.png"
+            alt="Logo Parqueadero"
+            class="logo">
+
+        <div>
+
+            <h1>
+                Sistema Parqueadero
+            </h1>
+
+            <p id="fechaHora"></p>
+
+        </div>
+
+    </header>
+
+    <!-- CONTENEDOR -->
+
+    <div class="container">
+
+        <!-- INPUT -->
+
+        <input
+            type="text"
+            id="placa"
+            placeholder="Ingrese la placa">
+
+        <!-- BOTÓN INGRESAR -->
+
+        <button onclick="ingresarVehiculo()">
+
+            Ingresar Vehículo
+
+        </button>
+
+        <!-- BOTÓN SALIR -->
+
+        <button
+            onclick="salirVehiculo()"
+            class="btn-salir">
+
+            Salir Vehículo
+
+        </button>
+
+        <!-- RESULTADO -->
+
+        <div
+            id="resultado"
+            class="resultado">
+
+        </div>
+
+        <!-- TABLA -->
+
+        <h2>
+
+            Vehículos en Parqueadero
+
+        </h2>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Placa</th>
+
+            <th>Tipo</th>
+
+            <th>Hora ingreso</th>
+
+            <th>Hora salida</th>
+
+            <th>Total</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody id="tablaVehiculos">
+
+    </tbody>
+
+</table>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
