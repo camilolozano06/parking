@@ -29,8 +29,8 @@ header {
 
 .container {
     background: white;
-    width: 650px;
-    margin: 80px auto;
+    width: 750px;
+    margin: 60px auto;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -47,16 +47,25 @@ input {
     box-sizing: border-box;
 }
 
-button {
-    width: 100%;
+.botones {
+    display: flex;
+    gap: 15px;
     margin-top: 20px;
+}
+
+button {
+    flex: 1;
     padding: 12px;
+
     border: none;
     border-radius: 8px;
+
     background: #2563eb;
     color: white;
+
     font-size: 16px;
     cursor: pointer;
+
     transition: 0.3s;
 }
 
@@ -72,13 +81,6 @@ button:hover {
     background: #b91c1c;
 }
 
-.resultado {
-    margin-top: 20px;
-    font-weight: bold;
-    color: green;
-    line-height: 1.6;
-}
-
 h2 {
     margin-top: 40px;
     color: #111827;
@@ -87,7 +89,9 @@ h2 {
 table {
     width: 100%;
     margin-top: 20px;
+
     border-collapse: collapse;
+
     border-radius: 10px;
     overflow: hidden;
 }
@@ -95,21 +99,70 @@ table {
 th {
     background: #111827;
     color: white;
+
     padding: 12px;
-    font-size: 15px;
 }
 
 td {
     padding: 12px;
-    border-bottom: 1px solid #ccc;
     text-align: center;
+
+    border-bottom: 1px solid #ccc;
 }
 
 tr:hover {
     background: #f1f5f9;
 }
 
-@media (max-width: 700px) {
+/* POPUP */
+
+.popup {
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    width: 350px;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    line-height: 1.6;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+
+    z-index: 9999;
+
+    animation: aparecer 0.3s ease;
+}
+
+.popup.exito {
+    background: #16a34a;
+}
+
+.popup.error {
+    background: #dc2626;
+}
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@media (max-width: 800px) {
+
     .container {
         width: 90%;
     }
@@ -117,4 +170,14 @@ tr:hover {
     table {
         font-size: 14px;
     }
+
+    .popup {
+        width: 280px;
+        right: 10px;
+    }
+
+    .botones {
+        flex-direction: column;
+    }
+
 }
