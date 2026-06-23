@@ -8,11 +8,9 @@ header {
     background: #111827;
     color: white;
     padding: 20px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     gap: 15px;
 }
 
@@ -29,12 +27,38 @@ header {
 
 .container {
     background: white;
-    width: 750px;
+    width: 850px;
     margin: 60px auto;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: #111827;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.card p {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 input {
@@ -56,16 +80,12 @@ input {
 button {
     flex: 1;
     padding: 12px;
-
     border: none;
     border-radius: 8px;
-
     background: #2563eb;
     color: white;
-
     font-size: 16px;
     cursor: pointer;
-
     transition: 0.3s;
 }
 
@@ -81,6 +101,36 @@ button:hover {
     background: #b91c1c;
 }
 
+.buscador {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.buscador input {
+    margin-top: 0;
+}
+
+.btn-buscar {
+    max-width: 160px;
+    background: #111827;
+}
+
+.btn-buscar:hover {
+    background: #374151;
+}
+
+.resultado-busqueda {
+    margin-top: 30px;
+}
+
+.total-busqueda {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #111827;
+    font-size: 18px;
+}
+
 h2 {
     margin-top: 40px;
     color: #111827;
@@ -89,9 +139,7 @@ h2 {
 table {
     width: 100%;
     margin-top: 20px;
-
     border-collapse: collapse;
-
     border-radius: 10px;
     overflow: hidden;
 }
@@ -99,14 +147,12 @@ table {
 th {
     background: #111827;
     color: white;
-
     padding: 12px;
 }
 
 td {
     padding: 12px;
     text-align: center;
-
     border-bottom: 1px solid #ccc;
 }
 
@@ -114,28 +160,17 @@ tr:hover {
     background: #f1f5f9;
 }
 
-/* POPUP */
-
 .popup {
     position: fixed;
-
     top: 20px;
     right: 20px;
-
     width: 350px;
-
     padding: 20px;
-
     border-radius: 12px;
-
     color: white;
-
     line-height: 1.6;
-
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-
     z-index: 9999;
-
     animation: aparecer 0.3s ease;
 }
 
@@ -148,7 +183,6 @@ tr:hover {
 }
 
 @keyframes aparecer {
-
     from {
         opacity: 0;
         transform: translateY(-20px);
@@ -158,13 +192,15 @@ tr:hover {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
-@media (max-width: 800px) {
-
+@media (max-width: 900px) {
     .container {
         width: 90%;
+    }
+
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     table {
@@ -175,9 +211,19 @@ tr:hover {
         width: 280px;
         right: 10px;
     }
+}
 
-    .botones {
+@media (max-width: 600px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .botones,
+    .buscador {
         flex-direction: column;
     }
 
+    .btn-buscar {
+        max-width: 100%;
+    }
 }

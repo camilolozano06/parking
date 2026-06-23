@@ -48,8 +48,13 @@ function identificarTipo(placaParametro) {
     let carro = /^[A-Z]{3}[0-9]{3}$/;
     let moto = /^[A-Z]{3}[0-9]{2}[A-Z]{1}$/;
 
-    if (carro.test(placaParametro)) return "carro";
-    if (moto.test(placaParametro)) return "moto";
+    if (carro.test(placaParametro)) {
+        return "carro";
+    }
+
+    if (moto.test(placaParametro)) {
+        return "moto";
+    }
 
     return "invalida";
 }
@@ -57,6 +62,10 @@ function identificarTipo(placaParametro) {
 function calcularTarifa(tipoParametro, minutosParametro) {
     let tarifa = tipoParametro === "carro" ? 250 : 150;
     return tarifa * minutosParametro;
+}
+
+function formatearDinero(valor) {
+    return "$" + valor.toLocaleString("es-CO");
 }
 
 function ingresarVehiculo() {
@@ -118,9 +127,11 @@ function salirVehiculo() {
     historialVehiculos.push({
         placa: placa,
         tipo: vehiculo.tipo,
+        fecha: horaSalida.toLocaleDateString("es-CO"),
         horaIngreso: horaIngreso.toLocaleTimeString(),
         horaSalida: horaSalida.toLocaleTimeString(),
-        total: "$" + total
+        minutos: minutos,
+        total: formatearDinero(total)
     });
 
     delete vehiculosActivos[placa];
@@ -132,12 +143,36 @@ function salirVehiculo() {
         "Hora ingreso: " + horaIngreso.toLocaleTimeString() + "<br>" +
         "Hora salida: " + horaSalida.toLocaleTimeString() + "<br>" +
         "Tiempo: " + minutos + " minuto(s)<br>" +
-        "Total a pagar: $" + total,
+        "Total a pagar: " + formatearDinero(total),
         "exito"
     );
 
     document.getElementById("placa").value = "";
     actualizarTablas();
+}
+
+function actualizarDashboard() {
+    let carros = 0;
+    let motos = 0;
+    let recaudo = 0;
+
+    for (let placa in vehiculosActivos) {
+        if (vehiculosActivos[placa].tipo === "carro") {
+            carros++;
+        } else {
+            motos++;
+        }
+    }
+
+    historialVehiculos.forEach(function (vehiculo) {
+        let valor = vehiculo.total.replace("$", "").replace(/\./g, "");
+        recaudo += Number(valor);
+    });
+
+    document.getElementById("totalCarros").textContent = carros;
+    document.getElementById("totalMotos").textContent = motos;
+    document.getElementById("ocupacion").textContent = Object.keys(vehiculosActivos).length;
+    document.getElementById("recaudoTotal").textContent = formatearDinero(recaudo);
 }
 
 function actualizarTablas(guardar = true) {
@@ -169,7 +204,82 @@ function actualizarTablas(guardar = true) {
         `;
     });
 
-    if (guardar) guardarDatos();
+    actualizarDashboard();
+
+    if (guardar) {
+        guardarDatos();
+    }
+}
+
+function buscarHistorialPlaca() {
+    let placaBuscada = document
+        .getElementById("buscarPlaca")
+        .value
+        .toUpperCase()
+        .trim();
+
+    let resultadoBusqueda = document.getElementById("resultadoBusqueda");
+    resultadoBusqueda.innerHTML = "";
+
+    if (placaBuscada === "") {
+        mostrarPopup("Por favor ingrese una placa para buscar", "error");
+        return;
+    }
+
+    let resultados = historialVehiculos.filter(function (vehiculo) {
+        return vehiculo.placa === placaBuscada;
+    });
+
+    if (resultados.length === 0) {
+        resultadoBusqueda.innerHTML =
+            "<p>No se encontró historial para la placa <strong>" +
+            placaBuscada +
+            "</strong>.</p>";
+        return;
+    }
+
+    let totalPagado = 0;
+
+    let html =
+        "<h2>Historial de la placa " + placaBuscada + "</h2>" +
+        "<table>" +
+        "<thead>" +
+        "<tr>" +
+        "<th>#</th>" +
+        "<th>Fecha</th>" +
+        "<th>Tipo</th>" +
+        "<th>Hora ingreso</th>" +
+        "<th>Hora salida</th>" +
+        "<th>Tiempo</th>" +
+        "<th>Total pagado</th>" +
+        "</tr>" +
+        "</thead>" +
+        "<tbody>";
+
+    resultados.forEach(function (vehiculo, index) {
+        let valor = vehiculo.total.replace("$", "").replace(/\./g, "");
+        totalPagado += Number(valor);
+
+        html +=
+            "<tr>" +
+            "<td>" + (index + 1) + "</td>" +
+            "<td>" + (vehiculo.fecha || "Sin fecha") + "</td>" +
+            "<td>" + vehiculo.tipo + "</td>" +
+            "<td>" + vehiculo.horaIngreso + "</td>" +
+            "<td>" + vehiculo.horaSalida + "</td>" +
+            "<td>" + (vehiculo.minutos || "-") + " min</td>" +
+            "<td>" + vehiculo.total + "</td>" +
+            "</tr>";
+    });
+
+    html +=
+        "</tbody>" +
+        "</table>" +
+        "<p class='total-busqueda'>Total pagado por esta placa: " +
+        formatearDinero(totalPagado) +
+        "</p>";
+
+    resultadoBusqueda.innerHTML = html;
 }
 
 function actualizarFechaHora() {

@@ -5,91 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Parqueadero</title>
-
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <header>
+<header>
+    <img src="logo.png" alt="Logo Parqueadero" class="logo">
 
-        <img
-            src="logo.png"
-            alt="Logo Parqueadero"
-            class="logo">
+    <div>
+        <h1>Sistema Parqueadero</h1>
+        <p id="fechaHora"></p>
+    </div>
+</header>
 
-        <div>
-            <h1>Sistema Parqueadero</h1>
-            <p id="fechaHora"></p>
+<div class="container">
+
+    <div class="dashboard">
+        <div class="card">
+            <h3>🚗 Carros</h3>
+            <p id="totalCarros">0</p>
         </div>
 
-    </header>
+        <div class="card">
+            <h3>🏍️ Motos</h3>
+            <p id="totalMotos">0</p>
+        </div>
 
-    <div class="container">
+        <div class="card">
+            <h3>💰 Recaudo</h3>
+            <p id="recaudoTotal">$0</p>
+        </div>
 
-        <input
-            type="text"
-            id="placa"
-            placeholder="Ingrese la placa">
-
-        <div class="botones">
-
-    <button onclick="ingresarVehiculo()">
-        Ingresar Vehículo
-    </button>
-
-    <button onclick="salirVehiculo()" class="btn-salir">
-        Salir Vehículo
-    </button>
-
+        <div class="card">
+            <h3>🅿️ Activos</h3>
+            <p id="ocupacion">0</p>
+        </div>
     </div>
 
-        <h2>Vehículos Activos</h2>
+    <input type="text" id="placa" placeholder="Ingrese la placa">
 
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>Placa</th>
-                    <th>Tipo</th>
-                    <th>Hora ingreso</th>
-                </tr>
-
-            </thead>
-
-            <tbody id="tablaActivos">
-
-            </tbody>
-
-        </table>
-
-        <h2>Historial de Salidas</h2>
-
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>Placa</th>
-                    <th>Tipo</th>
-                    <th>Hora ingreso</th>
-                    <th>Hora salida</th>
-                    <th>Total</th>
-                </tr>
-
-            </thead>
-
-            <tbody id="tablaHistorial">
-
-            </tbody>
-
-        </table>
-
+    <div class="botones">
+        <button onclick="ingresarVehiculo()">Ingresar Vehículo</button>
+        <button onclick="salirVehiculo()" class="btn-salir">Salir Vehículo</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="buscador">
+        <input type="text" id="buscarPlaca" placeholder="🔍 Buscar historial por placa">
+        <button onclick="buscarHistorialPlaca()" class="btn-buscar">Buscar</button>
+    </div>
+
+    <div id="resultadoBusqueda" class="resultado-busqueda"></div>
+
+    <h2>Vehículos Activos</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Tipo</th>
+                <th>Hora ingreso</th>
+            </tr>
+        </thead>
+        <tbody id="tablaActivos"></tbody>
+    </table>
+
+    <h2>Historial de Salidas</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Tipo</th>
+                <th>Hora ingreso</th>
+                <th>Hora salida</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="tablaHistorial"></tbody>
+    </table>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
