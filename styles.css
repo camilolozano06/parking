@@ -27,7 +27,7 @@ header {
 
 .container {
     background: white;
-    width: 850px;
+    width: 950px;
     margin: 60px auto;
     padding: 30px;
     border-radius: 15px;
@@ -35,26 +35,30 @@ header {
     text-align: center;
 }
 
-.dashboard {
+.dashboard,
+.resumen-dia {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     margin-bottom: 30px;
 }
 
-.card {
+.card,
+.resumen-dia div {
     background: #111827;
     color: white;
     padding: 20px;
     border-radius: 12px;
 }
 
-.card h3 {
+.card h3,
+.resumen-dia h3 {
     margin: 0;
     font-size: 16px;
 }
 
-.card p {
+.card p,
+.resumen-dia p {
     margin-top: 10px;
     margin-bottom: 0;
     font-size: 24px;
@@ -71,7 +75,8 @@ input {
     box-sizing: border-box;
 }
 
-.botones {
+.botones,
+.buscador {
     display: flex;
     gap: 15px;
     margin-top: 20px;
@@ -101,16 +106,6 @@ button:hover {
     background: #b91c1c;
 }
 
-.buscador {
-    display: flex;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.buscador input {
-    margin-top: 0;
-}
-
 .btn-buscar {
     max-width: 160px;
     background: #111827;
@@ -118,6 +113,10 @@ button:hover {
 
 .btn-buscar:hover {
     background: #374151;
+}
+
+.buscador input {
+    margin-top: 0;
 }
 
 .resultado-busqueda {
@@ -129,6 +128,20 @@ button:hover {
     font-weight: bold;
     color: #111827;
     font-size: 18px;
+}
+
+.filtro-fecha {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.filtro-fecha label {
+    font-weight: bold;
+    color: #111827;
+}
+
+.filtro-fecha input {
+    margin-top: 8px;
 }
 
 h2 {
@@ -194,27 +207,24 @@ tr:hover {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .container {
         width: 90%;
     }
 
-    .dashboard {
+    .dashboard,
+    .resumen-dia {
         grid-template-columns: repeat(2, 1fr);
     }
 
     table {
-        font-size: 14px;
-    }
-
-    .popup {
-        width: 280px;
-        right: 10px;
+        font-size: 13px;
     }
 }
 
 @media (max-width: 600px) {
-    .dashboard {
+    .dashboard,
+    .resumen-dia {
         grid-template-columns: 1fr;
     }
 
@@ -225,5 +235,10 @@ tr:hover {
 
     .btn-buscar {
         max-width: 100%;
+    }
+
+    .popup {
+        width: 280px;
+        right: 10px;
     }
 }

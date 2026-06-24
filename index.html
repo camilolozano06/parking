@@ -23,17 +23,17 @@
 
     <div class="dashboard">
         <div class="card">
-            <h3>🚗 Carros</h3>
+            <h3>🚗 Carros activos</h3>
             <p id="totalCarros">0</p>
         </div>
 
         <div class="card">
-            <h3>🏍️ Motos</h3>
+            <h3>🏍️ Motos activas</h3>
             <p id="totalMotos">0</p>
         </div>
 
         <div class="card">
-            <h3>💰 Recaudo</h3>
+            <h3>💰 Recaudo total</h3>
             <p id="recaudoTotal">$0</p>
         </div>
 
@@ -70,15 +70,45 @@
         <tbody id="tablaActivos"></tbody>
     </table>
 
-    <h2>Historial de Salidas</h2>
+    <h2>Historial por Día</h2>
+
+    <div class="filtro-fecha">
+        <label for="fechaFiltro">📅 Seleccionar fecha:</label>
+        <input type="date" id="fechaFiltro" onchange="filtrarHistorialPorFecha()">
+    </div>
+
+    <div class="resumen-dia">
+        <div>
+            <h3>Vehículos del día</h3>
+            <p id="vehiculosDia">0</p>
+        </div>
+
+        <div>
+            <h3>Carros</h3>
+            <p id="carrosDia">0</p>
+        </div>
+
+        <div>
+            <h3>Motos</h3>
+            <p id="motosDia">0</p>
+        </div>
+
+        <div>
+            <h3>Recaudo día</h3>
+            <p id="recaudoDia">$0</p>
+        </div>
+    </div>
 
     <table>
         <thead>
             <tr>
-                <th>Placa</th>
-                <th>Tipo</th>
+                <th>Fecha</th>
+                <th>Día</th>
                 <th>Hora ingreso</th>
                 <th>Hora salida</th>
+                <th>Placa</th>
+                <th>Tipo</th>
+                <th>Tiempo</th>
                 <th>Total</th>
             </tr>
         </thead>
